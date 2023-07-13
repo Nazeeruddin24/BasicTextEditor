@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1 class="text">Simple Text Editor</h1>
+
+    <textarea
+      id="edit"
+      placeholder="Type your text here..."
+      ></textarea>
+    <br/>
+      <button onclick="copyText()" class="cp"  id="bb">Copy</button>
+      <h4>copy the text by clicking on the button</h4>
+      <br/>
+      <button onclick="clearText()" class="clr" id="bb">Clear</button>
+      <h4>
+      clear everything by clicking on buttton
+      </h4>
+
+    <h3>Output:</h3>
+    <div id="output" class="op"></div>
+
+    <script>
+      function copyText() {
+        var outputText = document.getElementById("output").textContent;
+
+        var tempTextarea = document.createElement("textarea");
+        tempTextarea.value = outputText;
+        document.body.appendChild(tempTextarea);
+
+        tempTextarea.select();
+        document.execCommand("copy");
+
+        document.body.removeChild(tempTextarea);
+
+        alert("Text copied to clipboard!");
+      }
+
+      function clearText() {
+        document.getElementById("edit").value = "";
+        document.getElementById("output").textContent = "";
+      }
+
+      document.getElementById("edit").addEventListener("input", function () {
+        var inputText = document.getElementById("edit").value;
+        document.getElementById("output").textContent = inputText;
+      });
+    </script>
+  </body>
+</html>
